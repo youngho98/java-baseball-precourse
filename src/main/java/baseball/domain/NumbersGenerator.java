@@ -2,13 +2,9 @@ package baseball.domain;
 
 public class NumbersGenerator {
 
-    private static final int SIZE = 3;
-    private static final int MIN = 1;
-    private static final int MAX = 9;
-
     public int[] generate() {
-        int[] numbers = new int[SIZE];
-        for (int i = 0; i < SIZE; i++) {
+        int[] numbers = new int[3];
+        for (int i = 0; i < 3; i++) {
             int num = pickNumber();
             if (contains(numbers, i, num)) {
                 i--;
@@ -21,7 +17,7 @@ public class NumbersGenerator {
     }
 
     private int pickNumber() {
-        return (int) (Math.random() * (MAX - MIN + 1)) + MIN;
+        return (int) (Math.random() * 9) + 1;
     }
 
     private boolean contains(int[] numbers, int size, int candidate) {

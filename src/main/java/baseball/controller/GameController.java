@@ -33,7 +33,7 @@ public class GameController {
         }
     }
 
-    public void playOneGame() {
+    private void playOneGame() {
         int[] answer = numbersGenerator.generate();
 
         while (true) {
@@ -70,19 +70,22 @@ public class GameController {
     private boolean isRestart() {
         try {
             String input = inputView.readRestartCommand();
-
-            if ("1".equals(input)) {
-                return true;
-            }
-
-            if ("2".equals(input)) {
-                return false;
-            }
-
-            throw new IllegalArgumentException();
+            return parseRestartCommand(input);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage();
             return isRestart();
         }
+    }
+
+    private boolean parseRestartCommand(String input) {
+        if ("1".equals(input)) {
+            return true;
+        }
+
+        if ("2".equals(input)) {
+            return false;
+        }
+
+        throw new IllegalArgumentException();
     }
 }

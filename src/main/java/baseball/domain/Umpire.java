@@ -2,8 +2,6 @@ package baseball.domain;
 
 public class Umpire {
 
-    private static final int SIZE = 3;
-
     public Hint judge(int[] answer, int[] guess) {
         int strike = countStrike(answer, guess);
         int ball = countBall(answer, guess);
@@ -12,7 +10,7 @@ public class Umpire {
 
     private int countStrike(int[] answer, int[] guess) {
         int count = 0;
-        for (int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < 3; i++) {
             if (guess[i] == answer[i]) {
                 count++;
             }
@@ -22,7 +20,7 @@ public class Umpire {
 
     private int countBall(int[] answer, int[] guess) {
         int count = 0;
-        for (int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < 3; i++) {
             if (guess[i] != answer[i] && contains(answer, guess[i])) {
                 count++;
             }

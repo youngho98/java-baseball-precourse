@@ -10,9 +10,30 @@ public class OutputView {
             return;
         }
 
-        printStrike(hint);
-        printBall(hint);
-        System.out.println();
+        System.out.println(buildHintMessage(hint));
+    }
+
+    private String buildHintMessage(Hint hint) {
+        StringBuilder sb = new StringBuilder();
+        appendStrike(sb, hint);
+        appendBall(sb, hint);
+        return sb.toString();
+    }
+
+    private void appendStrike(StringBuilder sb, Hint hint) {
+        if (hint.getStrike() > 0) {
+            sb.append(hint.getStrike()).append("스트라이크");
+        }
+    }
+
+    private void appendBall(StringBuilder sb, Hint hint) {
+        if (hint.getBall() == 0) {
+            return;
+        }
+        if (sb.length() > 0) {
+            sb.append(" ");
+        }
+        sb.append(hint.getBall()).append("볼");
     }
 
     public void printErrorMessage() {
@@ -21,17 +42,5 @@ public class OutputView {
 
     public void printGameEnd() {
         System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 끝");
-    }
-
-    private void printStrike(Hint hint) {
-        if (hint.getStrike() > 0) {
-            System.out.print(hint.getStrike() + "스트라이크 ");
-        }
-    }
-
-    private void printBall(Hint hint) {
-        if (hint.getBall() > 0) {
-            System.out.print(hint.getBall() + "볼 ");
-        }
     }
 }
